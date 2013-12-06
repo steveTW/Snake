@@ -1,0 +1,37 @@
+{
+	com.badlogic.gdx.graphics.g2d.BitmapFont: {
+		buttontext: {file: title-16.fnt },
+		normaltext: {file: title-18.fnt },
+		titletext: {file: title-40.fnt},
+	},
+	com.badlogic.gdx.graphics.Color: {
+		red: { a: 1, b: 0, g: 0, r: 1 },
+		green: { a:1, b: 0, g: 1, r: 0 },
+		white: { a: 1, b: 1, g: 1, r: 1 },
+		black: { a: 1, b: 0, g: 0, r: 0 },
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+		default: { font: normaltext, fontColor: white },
+		normal: { font: normaltext, fontColor: black },
+		title: { font: titletext, fontColor: red },
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+		default : {
+				down: buttonpressed, up: button, checked: button, checkedOver: button, over: buttonselected,
+				font: normaltext, fontColor: white		
+			},
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+		default: {
+				vScroll: vScroll, hScrollKnob: scrollknob, background: listbackground, 
+				hScroll: hScroll, vScrollKnob: scrollknob
+			},
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+		default: {
+				font: normaltext, fontColor: white, background: listbackground,
+				scrollStyle: default,
+				listStyle: { font: normaltext, selection: listbackground },
+			},
+	},
+}
