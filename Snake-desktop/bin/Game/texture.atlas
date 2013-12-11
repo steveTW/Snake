@@ -1,0 +1,122 @@
+
+texture.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+splashimage
+  rotate: false
+  xy: 1, 540
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+titleimage
+  rotate: false
+  xy: 1, 58
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+hScroll
+  rotate: false
+  xy: 803, 1006
+  size: 162, 14
+  orig: 162, 14
+  offset: 0, 0
+  index: -1
+vScroll
+  rotate: false
+  xy: 803, 842
+  size: 14, 162
+  orig: 14, 162
+  offset: 0, 0
+  index: -1
+listbackground
+  rotate: false
+  xy: 1, 1
+  size: 100, 55
+  orig: 100, 55
+  offset: 0, 0
+  index: -1
+windowbackground
+  rotate: false
+  xy: 819, 949
+  size: 100, 55
+  orig: 100, 55
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 103, 36
+  size: 61, 20
+  orig: 61, 20
+  offset: 0, 0
+  index: -1
+buttonpressed
+  rotate: false
+  xy: 819, 927
+  size: 61, 20
+  orig: 61, 20
+  offset: 0, 0
+  index: -1
+buttonselected
+  rotate: false
+  xy: 103, 14
+  size: 61, 20
+  orig: 61, 20
+  offset: 0, 0
+  index: -1
+extra
+  rotate: false
+  xy: 921, 984
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+food
+  rotate: false
+  xy: 166, 36
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+snakebody
+  rotate: false
+  xy: 819, 905
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+snakehead
+  rotate: false
+  xy: 882, 927
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+scrollknob
+  rotate: false
+  xy: 803, 825
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1
+scrollknobselected
+  rotate: false
+  xy: 921, 967
+  size: 12, 15
+  orig: 12, 15
+  offset: 0, 0
+  index: -1
+
+texture2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+buttonfont
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
