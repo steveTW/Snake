@@ -16,7 +16,6 @@ public class SnakeGame extends Game{
 	
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
 		manager = new AssetManager();
 		this.setScreen(getSplashScreen());
 	}

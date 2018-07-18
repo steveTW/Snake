@@ -3,6 +3,7 @@ package screen;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Peripheral;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -16,6 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad.TouchpadStyle;
 import com.me.mygdxgame.SnakeBody;
 import com.me.mygdxgame.SnakeGame;
 import com.me.mygdxgame.SnakeHead;
@@ -23,6 +26,7 @@ import com.me.mygdxgame.SnakeHead;
 
 
 public class SnakeScreen extends GameScreen {
+	
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private SnakeHead player;
@@ -32,13 +36,16 @@ public class SnakeScreen extends GameScreen {
 	private boolean existfood;
 	private static int score;
 	
+	private int speed;//控制每秒移動;
+	
 	private Sound eat;
 	private Sound collision;
 	
 	private Label label;
 	
-	public SnakeScreen(SnakeGame game){
+	public SnakeScreen(SnakeGame game, int speed){
 		super(game);		
+		this.speed=speed;
 	}
 
 	@Override
@@ -59,7 +66,7 @@ public class SnakeScreen extends GameScreen {
 		label.setX(10);
 		label.setY(height-label.getHeight() - 10);
 
-		player = new SnakeHead(this.atlas.findRegion("snakehead"), 400, 240);//getImageheight only return 0
+		player = new SnakeHead(this.atlas.findRegion("snakehead"), 400, 240,speed);//getImageheight only return 0
 		snakeBody = new SnakeBody(player);
 		placefood();
 		existfood = true;
@@ -69,6 +76,11 @@ public class SnakeScreen extends GameScreen {
 		eat = manager.get("Game/eat.ogg", Sound.class);
 		collision = manager.get("Game/Collision.ogg", Sound.class);
 		
+		//boolean isMultitouchScreenAvailable=Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen);
+		//if (isMultitouchScreenAvailable){
+		//	Touchpad pad = initTouchpad();
+		//	stage.addActor(pad);
+		//}
 		
 		stage.addActor(player);
 		stage.addActor(snakeBody);
@@ -85,6 +97,7 @@ public class SnakeScreen extends GameScreen {
 
 	@Override
 	//this is from implement screen
+	// 刷新螢幕
 	public void render(float delta) {		
 		Gdx.gl.glClearColor( 0.5f, 0.75f, 0.5f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -108,7 +121,7 @@ public class SnakeScreen extends GameScreen {
 				eat.play();
 				stage.getRoot().removeActor(food);
 				snakeBody.addBody();
-				score+=10;
+				score+=5+speed*5;
 				existfood = false;
 			}
 			
@@ -174,11 +187,25 @@ public class SnakeScreen extends GameScreen {
 	public static int getScore() {
 		return score;
 	}
+	
+	private Touchpad initTouchpad() {
+        Skin skin = new Skin();
+        skin.add("knob", new Texture("UI/touchKnob.png"));
+        skin.add("background", new Texture("UI/touchBackground.png"));
+
+        TouchpadStyle style = new TouchpadStyle();
+        // skin.add
+        style.knob =  skin.getDrawable("knob");
+        style.background = skin.getDrawable("background");
+
+        Touchpad pad = new Touchpad(10, style);
+        pad.setBounds(0, Gdx.graphics.getHeight() - 150, 150, 150);
+        return pad;
+    }
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
 		
 	}
+	
 }

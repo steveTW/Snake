@@ -2,6 +2,7 @@ package screen;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL10;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -20,7 +21,8 @@ public class MenuScreen extends GameScreen{
 	private TextButton start;
 	private Image background;
 	private TextButton option;
-	private TextButton score;
+	private OptionWindow optionWindow;
+	//private TextButton score;
 
 	
 	public MenuScreen(SnakeGame game) {
@@ -29,7 +31,6 @@ public class MenuScreen extends GameScreen{
 	
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
 		Gdx.gl.glClearColor( 0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
@@ -39,17 +40,29 @@ public class MenuScreen extends GameScreen{
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
 		this.stage = new Stage(800, 480, true);
 		this.manager = SnakeGame.getManager();
 		this.atlas = manager.get("Game/texture.atlas", TextureAtlas.class);
 		Skin skin = new Skin(Gdx.files.internal("UI/skin.json"), this.atlas);
+		
+		final Preferences pref = Gdx.app.getPreferences("Snake");
+		
+		optionWindow = new OptionWindow("¿ï¶µ",skin);
+	    optionWindow.setSize(450.0F, 300.0F);
+	    optionWindow.setX((800.0F - optionWindow.getWidth()) / 2.0F);
+	    optionWindow.setY((480.0F - optionWindow.getHeight()) / 2.0F);
+	    optionWindow.findActor("exit").addListener(new ClickListener()
+	    {
+	      public void clicked(InputEvent event, float x, float y) {
+	    	  super.clicked(event, x, y);
+	    	  	optionWindow.setVisible(false);
+	      }
+	    });
+	    optionWindow.setVisible(false);
 		
 		start = new TextButton("Start!", skin);
 		start.setWidth(150);
@@ -59,10 +72,9 @@ public class MenuScreen extends GameScreen{
 		start.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				// TODO Auto-generated method stub
 				super.clicked(event, x, y);
 				Gdx.app.log("", "click on start");
-				SnakeScreen snake = new SnakeScreen(game);
+				SnakeScreen snake = new SnakeScreen(game, pref.getInteger("Difficulty", 1));
 				game.setScreen(snake);
 			}	
 		});
@@ -75,13 +87,12 @@ public class MenuScreen extends GameScreen{
 		option.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				// TODO Auto-generated method stub
-				OptionScreen option = new OptionScreen(game);
-				game.setScreen(option);
+				Gdx.app.log("", "set option window visible");
+				optionWindow.setVisible(true);
 			}
 		});
 		
-		score = new TextButton("Score", skin);
+		/*score = new TextButton("Score", skin);
 		score.setWidth(150);
 		score.setHeight(30);
 		score.setX(400 - score.getWidth()/2);
@@ -99,7 +110,7 @@ public class MenuScreen extends GameScreen{
 				// TODO Auto-generated method stub
 				return super.isOver();
 			}
-		});
+		});*/
 		
 		
 		background = new Image(this.atlas.findRegion("titleimage"));
@@ -107,33 +118,26 @@ public class MenuScreen extends GameScreen{
 		this.stage.addActor(background);
 		this.stage.addActor(start);
 		this.stage.addActor(option);
-		this.stage.addActor(score);
+		this.stage.addActor(optionWindow);
+		//this.stage.addActor(score);
 		
 		Gdx.input.setInputProcessor(stage);//
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
