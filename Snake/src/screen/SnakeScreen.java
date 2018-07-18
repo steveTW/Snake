@@ -1,9 +1,6 @@
 package screen;
 
-
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Peripheral;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -22,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Touchpad.TouchpadStyle;
 import com.me.mygdxgame.SnakeBody;
 import com.me.mygdxgame.SnakeGame;
 import com.me.mygdxgame.SnakeHead;
-
 
 
 public class SnakeScreen extends GameScreen {
@@ -187,7 +183,7 @@ public class SnakeScreen extends GameScreen {
 	public static int getScore() {
 		return score;
 	}
-	
+	/*
 	private Touchpad initTouchpad() {
         Skin skin = new Skin();
         skin.add("knob", new Texture("UI/touchKnob.png"));
@@ -201,7 +197,7 @@ public class SnakeScreen extends GameScreen {
         Touchpad pad = new Touchpad(10, style);
         pad.setBounds(0, Gdx.graphics.getHeight() - 150, 150, 150);
         return pad;
-    }
+    }*/
 
 	@Override
 	public void hide() {
